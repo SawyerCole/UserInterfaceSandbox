@@ -1,13 +1,15 @@
 /**
  * Created by ros_rcsoyama on 5/11/2017.
  */
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -26,7 +28,7 @@ public class Main extends JFrame implements ActionListener {
 
         //When you close the frame, end code
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
 
         /*
         (this is for above)
@@ -37,10 +39,24 @@ public class Main extends JFrame implements ActionListener {
          */
 
         //makes a new button
-        JButton loadButton = new JButton("Load");
-        JButton CreateButton = new JButton("Create");
+        JButton loadButton = new JButton("blank1");
+        JButton CreateButton = new JButton("blank2");
 
-        //makes the action listener peramiters this
+        //menu bar
+
+        JMenuBar bar = new JMenuBar();
+        //name of tab in bar
+        JMenu file = new JMenu("STUFF");
+        //shit inside of bar
+        JMenuItem save = new JMenuItem("Save");
+        JMenuItem load = new JMenuItem("Load");
+        //makes the stuff
+        file.add(save);
+        file.add(load);
+        bar.add(file);
+        setJMenuBar(bar);
+
+        //makes the action listener parameters this
         loadButton.setActionCommand("Test");
         CreateButton.setActionCommand("Teeest");
 
