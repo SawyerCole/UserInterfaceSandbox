@@ -45,14 +45,32 @@ public class Main extends JFrame implements ActionListener {
         //menu bar
 
         JMenuBar bar = new JMenuBar();
-        //name of tab in bar
+        //name of the tab on bar
         JMenu file = new JMenu("STUFF");
-        //shit inside of bar
+        //shit inside of menu in the tab
         JMenuItem save = new JMenuItem("Save");
         JMenuItem load = new JMenuItem("Load");
-        //makes the stuff
+        JMenuItem exit = new JMenuItem("Exit");
+
+        //closes shit
+        exit.addActionListener(actionEvent -> {
+            System.out.println("Closed");
+            System.exit(0); });
+
+        JMenuItem extra = new JMenu("Extra");
+        JMenuItem hello = new JMenuItem("hey");
+        JMenuItem hello2 = new JMenuItem("hey yo");
+
+        //make the shit inside the tab
         file.add(save);
         file.add(load);
+        file.add(extra);
+        file.addSeparator();
+        file.add(exit);
+        //makes the thing inside of the "extra" tab inside of the "stuff" tab
+        extra.add(hello);
+        extra.add(hello2);
+        //makes the tab inside the bar
         bar.add(file);
         setJMenuBar(bar);
 
@@ -71,12 +89,15 @@ public class Main extends JFrame implements ActionListener {
        @Override
     public void actionPerformed(ActionEvent actionEvent) {
            String name = actionEvent.getActionCommand();
-           //you can set .equals to .equasIgnoreCase if want
+           //you can set .equals to .equalsIgnoreCase if want
            if (name.equals("Test")) {
                System.out.println("Good shit");
 
            } else if (name.equals("Teeest")) {
                System.out.println("Good job");
+           } else if (name.equalsIgnoreCase("exit")) {
+                System.out.println("Closed");
+                System.exit(0);
            }
        }
 }
