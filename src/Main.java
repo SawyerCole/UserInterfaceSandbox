@@ -10,10 +10,30 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 
 public class Main extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception evt) {}
+
+        JFrame f = new JFrame("Text Field Examples");
+        f.getContentPane().setLayout(new FlowLayout());
+        f.getContentPane().add(new JTextField("Text field 1"));
+        f.getContentPane().add(new JTextField("Text field 2", 8));
+        JTextField t = new JTextField("Text field 3", 8);
+        t.setHorizontalAlignment(JTextField.RIGHT);
+        f.getContentPane().add(t);
+        t = new JTextField("Text field 4", 8);
+        t.setHorizontalAlignment(JTextField.CENTER);
+        f.getContentPane().add(t);
+        f.getContentPane().add(new JTextField("Text field 5", 3));
+
+        f.pack();
+        f.setVisible(true);
 
         new Main().setVisible(true);
     }
@@ -23,7 +43,7 @@ public class Main extends JFrame implements ActionListener {
         super("Start Screen");
 
         //makes the size of the screen width by height
-        setSize(600,600);
+        setSize(1000,1000);
         setResizable(false);
 
         //When you close the frame, end code
@@ -52,15 +72,23 @@ public class Main extends JFrame implements ActionListener {
         JMenuItem load = new JMenuItem("Load");
         JMenuItem exit = new JMenuItem("Exit");
 
+        Drawing oval = new Drawing();
+        file.add(oval);
+
+
         //closes shit
-        exit.addActionListener(actionEvent -> {
+        exit.addActionListener((ActionEvent actionEvent) -> {
             System.out.println("Closed");
             System.exit(0); });
 
+        //making button
         JMenuItem extra = new JMenu("Extra");
         JMenuItem hello = new JMenuItem("hey");
         JMenuItem hello2 = new JMenuItem("hey yo");
 
+
+        //add text
+        JLabel label1 = new JLabel("KILLME");
         //make the shit inside the tab
         file.add(save);
         file.add(load);
@@ -78,6 +106,7 @@ public class Main extends JFrame implements ActionListener {
         loadButton.setActionCommand("Test");
         CreateButton.setActionCommand("Teeest");
 
+
         //makes the button work
         loadButton.addActionListener(this);
         CreateButton.addActionListener(this);
@@ -85,7 +114,12 @@ public class Main extends JFrame implements ActionListener {
         //Creates the button onto the UI
         add(loadButton);
         add(CreateButton);
+
+      add(label1);
     }
+
+
+
        @Override
     public void actionPerformed(ActionEvent actionEvent) {
            String name = actionEvent.getActionCommand();
@@ -101,3 +135,14 @@ public class Main extends JFrame implements ActionListener {
            }
        }
 }
+
+    class Drawing extends JPanel {
+        public void paint(Graphics g) {
+            setSize(300,300);
+            //Graphics2D g2d = (Graphics2D) g;
+            g.setColor(Color.BLACK);
+            g.fillOval(100,100,100,100);
+
+        }
+    }
+
